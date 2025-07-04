@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MCOservicesgroups Cleaning</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    body { font-family: 'Inter', sans-serif; margin: 0; background: #f9f9f9; color: #1e2a38; }
+    header { background: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .logo { font-weight: 700; font-size: 1.25rem; display: flex; align-items: center; }
+    .logo-icon { background: #ffcc00; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; margin-right: 10px; }
+    nav a { margin-left: 20px; text-decoration: none; color: #1e2a38; font-weight: 500; }
+    .hero { padding: 4rem 2rem; text-align: center; background: white; }
+    .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.25rem; margin-bottom: 2rem; color: #555; }
+    .cta-button { background: #ffcc00; border: none; padding: 1rem 2rem; font-size: 1rem; font-weight: bold; color: #1e2a38; border-radius: 8px; cursor: pointer; }
+    .section { padding: 4rem 2rem; background: #ffffff; }
+    .section h2 { text-align: center; font-size: 2rem; margin-bottom: 2rem; }
+    .calendar-container { max-width: 800px; margin: 2rem auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <div class="logo-icon">🧹</div>
+      MCOservicesgroups CLEANING
+    </div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#booking">Booking</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Reliable Cleaning Services</h1>
+    <p>Commercial and residential cleaning, including deep cleaning.</p>
+    <button class="cta-button" onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'})">Book a Cleaning</button>
+  </section>
+
+  <section class="section" id="about">
+    <h2>About Our Work</h2>
+    <p style="max-width: 700px; margin: 0 auto; text-align: center;">
+      MCOservicesgroups Cleaning is committed to delivering top-tier commercial and residential cleaning services.
+      With a focus on professionalism, quality, and customer satisfaction, we tailor each job to your space's needs and make sure it's spotless every time.
+    </p>
+  </section>
+
+  <section class="section" id="booking">
+    <h2>Book a Cleaning</h2>
+    <div class="calendar-container">
+      <h3 style="text-align:center;">Check Availability</h3>
+      <iframe src="https://calendar.google.com/calendar/embed?src=your_google_calendar_id%40group.calendar.google.com&ctz=America%2FNew_York"
+              style="border: 0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+    </div>
+    <div class="calendar-container">
+      <h3 style="text-align:center;">Submit Booking Request</h3>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfrKtxqEXAMPLELINK/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <h2>Contact Us</h2>
+    <p style="text-align: center;">
+      Phone: <a href="tel:9546813787">954-681-3787</a><br>
+      Email: <a href="mailto:neaalarza@gmail.com">neaalarza@gmail.com</a>
+    </p>
+  </section>
+</body>
+</html>
