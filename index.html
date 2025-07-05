@@ -7,77 +7,117 @@
   <title>Maria Alarza Cleaning Services</title>
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #e0f7fa, #ffffff);
-      color: #333;
+      background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+      margin: 0;
+      padding: 0;
+      text-align: center;
     }
     header {
-      text-align: center;
-      padding: 1rem;
+      padding: 20px;
     }
     header img {
-      max-width: 200px;
+      max-width: 160px;
     }
-    main {
+    h1 {
+      font-size: 2em;
+      margin-bottom: 0.2em;
+    }
+    h2 {
+      color: #555;
+    }
+    section {
+      margin: 30px auto;
+      padding: 20px;
       max-width: 600px;
-      margin: auto;
-      padding: 2rem;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    form {
-      display: flex;
-      flex-direction: column;
-    }
-    label, input, textarea {
-      margin: 0.5rem 0;
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      text-align: left;
     }
     input, textarea {
-      padding: 0.5rem;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 6px;
       border: 1px solid #ccc;
-      border-radius: 8px;
     }
     button {
-      padding: 0.75rem;
-      background-color: #26c6da;
+      background-color: #00BCD4;
       color: white;
+      padding: 10px 25px;
       border: none;
-      border-radius: 8px;
+      border-radius: 6px;
+      font-size: 16px;
       cursor: pointer;
     }
-    button:hover {
-      background-color: #00acc1;
+    footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #666;
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="logo.png" alt="Maria Alarza Professional Cleaner Logo" />
+    <img src="logo.png" alt="Maria Alarza Logo"/>
     <h1>Maria Alarza, Professional Cleaner</h1>
-    <p>Bringing Order and Sparkle to Your World</p>
+    <h2>Bringing Order and Sparkle to Your World</h2>
   </header>
-  <main>
-    <h2>Book a Cleaning Appointment</h2>
-    <form action="https://hooks.zapier.com/hooks/catch/23660752/u3tpycu/" method="POST">
-      <label for="name">Name</label>
-      <input type="text" id="name" name="name" required />
 
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" required />
-
-      <label for="date">Preferred Date</label>
-      <input type="date" id="date" name="date" required />
-
-      <label for="time">Preferred Time</label>
-      <input type="time" id="time" name="time" required />
-
-      <label for="notes">Additional Notes</label>
-      <textarea id="notes" name="notes"></textarea>
-
+  <section id="booking">
+    <h3>Book a Cleaning Appointment</h3>
+    <form id="bookingForm">
+      <label>Name</label>
+      <input type="text" name="name" required>
+      <label>Email</label>
+      <input type="email" name="email" required>
+      <label>Preferred Date</label>
+      <input type="date" name="date" required>
+      <label>Preferred Time</label>
+      <input type="time" name="time" required>
+      <label>Additional Notes</label>
+      <textarea name="notes"></textarea>
       <button type="submit">Book Now</button>
+      <p id="confirmationMessage" style="color: green;"></p>
     </form>
-  </main>
+  </section>
+
+  <section id="about">
+    <h3>About Us</h3>
+    <p>We provide top-tier residential and commercial cleaning services tailored to meet your needs. With years of experience and a passion for cleanliness, our team ensures your space sparkles every time.</p>
+  </section>
+
+  <section id="contact">
+    <h3>Contact Us</h3>
+    <p>Email: maria.alarza@example.com</p>
+    <p>Phone: (123) 456-7890</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Maria Alarza Cleaning Services. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = new FormData(e.target);
+      fetch('https://hooks.zapier.com/hooks/catch/your_webhook_url/', {
+        method: 'POST',
+        body: new URLSearchParams(data)
+      })
+      .then(response => {
+        document.getElementById('confirmationMessage').textContent = "Thank you! Your appointment has been booked.";
+        e.target.reset();
+      })
+      .catch(error => {
+        document.getElementById('confirmationMessage').textContent = "Sorry, something went wrong.";
+      });
+    });
+  </script>
 </body>
 </html>
