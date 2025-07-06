@@ -1,89 +1,126 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Maria Alarza, Professional Cleaner</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #e0f7fa, #ffffff);
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        header img {
-            margin-top: 20px;
-            width: 100px;
-        }
-        .container {
-            max-width: 600px;
-            margin: 20px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #00796b;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-        input, textarea {
-            margin: 10px 0;
-            padding: 12px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-        }
-        button {
-            padding: 12px;
-            background-color: #00bcd4;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        footer {
-            margin-top: 40px;
-            background: #f1f1f1;
-            padding: 20px;
-            font-size: 14px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Maria Alarza Cleaning Services</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #d0f0f7, #f7fcff);
+      color: #333;
+    }
+    header {
+      text-align: center;
+      padding: 2em;
+    }
+    header img {
+      max-width: 200px;
+      margin-bottom: 1em;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    form {
+      background: white;
+      max-width: 600px;
+      margin: 2em auto;
+      padding: 2em;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 1em;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.75em;
+      margin-top: 0.5em;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #18c8e8;
+      color: white;
+      padding: 1em;
+      margin-top: 1em;
+      border: none;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 2em;
+      background: #f2f2f2;
+      font-size: 0.9em;
+    }
+  </style>
 </head>
 <body>
-
-<header>
-    <img src="logo.png" alt="Logo">
+  <header>
+    <img src="logo.png" alt="Maria Alarza Logo">
     <h1>Maria Alarza, Professional Cleaner</h1>
     <p>Bringing Order and Sparkle to Your World</p>
-</header>
+  </header>
 
-<div class="container">
+  <form id="booking-form">
     <h2>Book a Cleaning Appointment</h2>
-    <form>
-        <input type="text" placeholder="Name" required>
-        <input type="email" placeholder="Email" required>
-        <input type="date" required>
-        <input type="time" required>
-        <textarea placeholder="Additional Notes"></textarea>
-        <button type="submit">Book Now</button>
-    </form>
-</div>
+    <label>Name</label>
+    <input type="text" name="name" required>
 
-<div class="container">
-    <h2>Contact Us</h2>
-    <p>Email: nealarza@gmail.com</p>
-    <p>Phone: 954-330-5342</p>
-</div>
+    <label>Email</label>
+    <input type="email" name="email" required>
 
-<footer>
-    © 2025 Maria Alarza Cleaning Services. All rights reserved.<br><small>Website created by Manuel Villegas.</small>
-</footer>
+    <label>Preferred Date</label>
+    <input type="date" name="date" required>
 
+    <label>Preferred Time</label>
+    <input type="time" name="time" required>
+
+    <label>Additional Notes</label>
+    <textarea name="notes"></textarea>
+
+    <button type="submit">Book Now</button>
+  </form>
+
+  <section style="max-width: 600px; margin: auto;">
+    <h3>About Us</h3>
+    <p>We are a professional cleaning service committed to bringing shine, order, and peace of mind to your home or business.</p>
+  </section>
+
+  <section style="max-width: 600px; margin: auto; text-align: center; padding-top: 2em;">
+    <h3>Contact Us</h3>
+    <p>Email: nealarza@gmail.com<br>Phone: 954-330-5342</p>
+  </section>
+
+  <footer>
+    &copy; 2025 Maria Alarza Cleaning Services. All rights reserved.<br>
+    Website created by Manuel Villegas.
+  </footer>
+
+  <script>
+    document.getElementById("booking-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      fetch("https://hooks.zapier.com/hooks/catch/23660752/u3tpycu/", {
+        method: "POST",
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          date: formData.get("date"),
+          time: formData.get("time"),
+          notes: formData.get("notes")
+        }),
+        headers: { "Content-Type": "application/json" }
+      }).then(() => {
+        alert("Your appointment has been submitted!");
+        this.reset();
+      }).catch(() => alert("There was an error submitting the form."));
+    });
+  </script>
 </body>
 </html>
