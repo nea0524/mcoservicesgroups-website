@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book a Cleaning Appointment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #b7d8e6, #dff1f5);
+            padding: 2rem;
+        }
+        form {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: auto;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        label, input, select, textarea, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        button {
+            background: #0097a7;
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .message {
+            text-align: center;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align:center;">Book a Cleaning Appointment</h2>
+    <form id="bookingForm">
+        <label for="name">Name</label>
+        <input type="text" id="name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+
+        <label for="date">Preferred Date</label>
+        <input type="date" id="date" required>
+
+        <label for="time">Preferred Time</label>
+        <input type="time" id="time" required>
+
+        <label for="notes">Additional Notes</label>
+        <textarea id="notes"></textarea>
+
+        <button type="submit">Book Now</button>
+        <div class="message" id="formMessage"></div>
+    </form>
+
+    <script>
+        const form = document.getElementById('bookingForm');
+        const message = document.getElementById('formMessage');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const payload = {
+                Name: document.getElementById('name').value,
+                Email: document.getElementById('email').value,
+                "Preferred Date": document.getElementById('date').value,
+                "Preferred Time": document.getElementById('time').value,
+                "Additional Notes": document.getElementById('notes').value
+            };
+
+            try {
+                const res = await fetch("https://hooks.zapier.com/hooks/catch/23660752/u3tpycu/", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+
+                if (res.ok) {
+                    message.textContent = "Appointment booked successfully!";
+                    message.style.color = "green";
+                    form.reset();
+                } else {
+                    throw new Error("Failed to send");
+                }
+            } catch (err) {
+                message.textContent = "There was an error submitting the form.";
+                message.style.color = "red";
+            }
+        });
+    </script>
+</body>
+</html>
